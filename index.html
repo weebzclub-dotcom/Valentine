@@ -190,12 +190,7 @@ allow="autoplay">
 </section>
 
 <script>
-function moveNo(id) {
-
-    // Increase YES button size
-    yesSize += 0.2;
-    document.getElementById("yesBtn").style.transform = "scale(" + yesSize + ")";
-    
+function moveNo(id) {    
     let button = document.getElementById(id);
     button.style.top = Math.random() * 100 + "px";
     button.style.left = Math.random() * 200 + "px";
