@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>For Bubu ❤️</title>
+    <title>For My Forever ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             margin: 0;
             font-family: Georgia, serif;
-            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            background: linear-gradient(to bottom, #141e30, #243b55);
             color: white;
             text-align: center;
             overflow-x: hidden;
@@ -19,87 +20,65 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px;
+            padding: 30px;
         }
 
         h1 {
-            font-size: 3em;
-        }
-
-        p {
-            max-width: 700px;
-            font-size: 1.3em;
-            line-height: 1.6;
+            font-size: 2.5em;
         }
 
         button {
             padding: 15px 30px;
             font-size: 1.2em;
             border: none;
-            border-radius: 30px;
+            border-radius: 40px;
             cursor: pointer;
-            margin: 20px;
+            margin: 15px;
             transition: 0.3s;
         }
 
-        .yesBtn {
+        #yesBtn {
             background-color: #ff4e88;
             color: white;
         }
 
-        .yesBtn:hover {
-            transform: scale(1.1);
-            background-color: #ff1e6c;
-        }
-
-        .noBtn {
-            background-color: #444;
+        #noBtn {
+            background-color: #333;
             color: white;
-            position: absolute;
+            position: relative;
         }
 
         .hidden {
             display: none;
         }
 
+        .envelope {
+            font-size: 100px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .envelope:hover {
+            transform: scale(1.1);
+        }
+
+        .letter {
+            background: white;
+            color: black;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+            animation: fadeIn 1.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         iframe {
             display: none;
-        }
-
-        /* Floating Hearts */
-        .heart {
-            position: fixed;
-            font-size: 24px;
-            animation: float 5s linear infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh); opacity: 1; }
-            100% { transform: translateY(-10vh); opacity: 0; }
-        }
-
-        /* Ring Animation */
-        .ring {
-            font-size: 80px;
-            animation: ringPop 1s ease-out forwards;
-        }
-
-        @keyframes ringPop {
-            0% { transform: scale(0); opacity: 0; }
-            60% { transform: scale(1.3); opacity: 1; }
-            100% { transform: scale(1); }
-        }
-
-        /* Cursor for typewriter */
-        .cursor {
-            display: inline-block;
-            width: 2px;
-            background: white;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
         }
     </style>
 </head>
@@ -107,102 +86,66 @@
 
 <!-- Background Music -->
 <iframe width="0" height="0"
-src="https://www.youtube.com/embed/oozQ4yV__Vw?autoplay=1&loop=1&playlist=oozQ4yV__Vw"
+src="https://www.youtube.com/embed/oozQ4yVVw?autoplay=1&loop=1&playlist=oozQ4yVVw"
 allow="autoplay">
 </iframe>
 
 <!-- SECTION 1 -->
 <section>
-    <h1 id="typewriter"></h1>
-</section>
-
-<!-- SECTION 2 -->
-<section>
-    <h2>Will you be my Valentine, Bubu? 💘</h2>
-    <div style="position:relative; height:150px;">
-        <button class="yesBtn" onclick="goToProposal()">YES 😍</button>
-        <button class="noBtn" id="noBtn1" onmouseover="moveNo('noBtn1')">NO 😅</button>
+    <h1>Will You Be My Valentine? 💘</h1>
+    <div>
+        <button id="yesBtn" onclick="sayYes()">YES ❤️</button>
+        <button id="noBtn" onclick="noClicked()">NO 😅</button>
     </div>
 </section>
 
-<!-- SECTION 3 -->
-<section id="proposalSection">
-    <h2>One More Question... 💍</h2>
-    <p>
-        Bubu, not just today.
-        <br>Not just this year.
-        <br><br>
-        But for every sunrise,
-        every dream,
-        every lifetime...
-    </p>
+<!-- SECTION 2 (Envelope Reveal) -->
+<section id="envelopeSection" class="hidden">
+    <h1>Click the Envelope 💌</h1>
+    <div class="envelope" onclick="openLetter()">💌</div>
 
-    <h2>Will you be mine forever? ❤️</h2>
+    <div id="letterContent" class="hidden">
+        <div class="letter">
+            <h2>My Love,</h2>
+            <p>
+                From the moment you walked into my life,
+                everything changed.
 
-    <div style="position:relative; height:150px;">
-        <button class="yesBtn" onclick="finalYes()">YES 💍</button>
-        <button class="noBtn" id="noBtn2" onmouseover="moveNo('noBtn2')">NO 😏</button>
+                You became my calm in chaos,
+                my happiness in sadness,
+                my home in this world.
+
+                I don’t just want today with you.
+                I want every tomorrow.
+
+                Will you be mine forever? 💍
+            </p>
+        </div>
     </div>
-</section>
-
-<!-- FINAL SECTION -->
-<section id="finalSection" class="hidden">
-    <div class="ring">💍</div>
-    <h1>Bubu Said YES ❤️</h1>
-    <p>
-        You are my forever.
-        My always.
-        My home.
-    </p>
 </section>
 
 <script>
-/* Typewriter Effect */
-const text = "Bubu ❤️\nFrom the moment you came into my life,\neverything changed.";
-let i = 0;
-function typeWriter() {
-    if (i < text.length) {
-        document.getElementById("typewriter").innerHTML += 
-            text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 60);
-    }
-}
-typeWriter();
+let yesSize = 1;
 
-/* Move NO Button */
-function moveNo(id) {
-    let button = document.getElementById(id);
-    button.style.top = Math.random() * 100 + "px";
-    button.style.left = Math.random() * 200 + "px";
+function noClicked() {
+    // Increase YES button size
+    yesSize += 0.2;
+    document.getElementById("yesBtn").style.transform = "scale(" + yesSize + ")";
+
+    // Move NO button randomly
+    let noBtn = document.getElementById("noBtn");
+    noBtn.style.position = "absolute";
+    noBtn.style.top = Math.random() * 60 + "vh";
+    noBtn.style.left = Math.random() * 60 + "vw";
 }
 
-/* Scroll to Proposal */
-function goToProposal() {
-    document.getElementById("proposalSection").scrollIntoView();
+function sayYes() {
+    document.querySelector("section").classList.add("hidden");
+    document.getElementById("envelopeSection").classList.remove("hidden");
 }
 
-/* Final YES */
-function finalYes() {
-    document.getElementById("finalSection").classList.remove("hidden");
-    document.getElementById("finalSection").scrollIntoView();
-    createHearts();
-}
-
-/* Hearts Animation */
-function createHearts() {
-    for (let i = 0; i < 60; i++) {
-        let heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-        document.body.appendChild(heart);
-
-        setTimeout(() => {
-            heart.remove();
-        }, 5000);
-    }
+function openLetter() {
+    document.getElementById("letterContent").classList.remove("hidden");
 }
 </script>
 
