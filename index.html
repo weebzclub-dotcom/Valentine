@@ -2,12 +2,11 @@
 <html>
 <head>
     <title>For My Forever ❤️</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             margin: 0;
             font-family: Georgia, serif;
-            background: linear-gradient(to bottom, #141e30, #243b55);
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
             color: white;
             text-align: center;
             overflow-x: hidden;
@@ -20,36 +19,43 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 40px;
         }
 
         h1 {
-            font-size: 2.5em;
+            font-size: 3em;
+        }
+
+        p {
+            max-width: 700px;
+            font-size: 1.3em;
+            line-height: 1.6;
         }
 
         button {
             padding: 15px 30px;
             font-size: 1.2em;
             border: none;
-            border-radius: 40px;
+            border-radius: 30px;
             cursor: pointer;
-            margin: 15px;
+            margin: 20px;
             transition: 0.3s;
         }
 
-        #yesBtn {
+        .yesBtn {
             background-color: #ff4e88;
             color: white;
         }
 
-        #noBtn {
-            background-color: #333;
-            color: white;
-            position: relative;
+        .yesBtn:hover {
+            transform: scale(1.1);
+            background-color: #ff1e6c;
         }
 
-        .hidden {
-            display: none;
+        .noBtn {
+            background-color: #444;
+            color: white;
+            position: absolute;
         }
 
         .envelope {
@@ -71,10 +77,20 @@
             margin-top: 20px;
             animation: fadeIn 1.5s forwards;
         }
+        
+        .hidden {
+            display: none;
+        }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .heart {
+            position: fixed;
+            font-size: 24px;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
         }
 
         iframe {
@@ -86,20 +102,51 @@
 
 <!-- Background Music -->
 <iframe width="0" height="0"
-src="https://www.youtube.com/embed/oozQ4yVVw?autoplay=1&loop=1&playlist=oozQ4yVVw"
+src="https://www.youtube.com/embed/oozQ4yV__Vw?autoplay=1&loop=1&playlist=oozQ4yV__Vw"
 allow="autoplay">
 </iframe>
 
 <!-- SECTION 1 -->
 <section>
-    <h1>Will You Be My Valentine? 💘</h1>
-    <div>
-        <button id="yesBtn" onclick="sayYes()">YES ❤️</button>
-        <button id="noBtn" onclick="noClicked()">NO 😅</button>
+    <h1>My Lovely Kelly ❤️</h1>
+    <p>
+        From the moment you came into my life,
+        everything changed.
+        You became my peace, my happiness,
+        my once-in-a-lifetime kind of love.
+    </p>
+</section>
+
+<!-- SECTION 2 -->
+<section id="valentineSection">
+    <h2>Will you be my Valentine? 💘</h2>
+    <div style="position:relative; height:150px;">
+        <button class="yesBtn" onclick="goToProposal()">YES 😍</button>
+        <button class="noBtn" id="noBtn1" onmouseover="moveNo('noBtn1')">NO 😅</button>
     </div>
 </section>
 
-<!-- SECTION 2 (Envelope Reveal) -->
+<!-- SECTION 3 -->
+<section id="proposalSection">
+    <h2>One More Question... 💍</h2>
+    <p>
+        Not just today.
+        <br>Not just this year.
+        <br><br>
+        But for every sunrise,
+        every dream,
+        every lifetime...
+    </p>
+
+    <h2>Will you be mine forever? ❤️</h2>
+
+    <div style="position:relative; height:150px;">
+        <button class="yesBtn" onclick="finalYes()">YES 💍</button>
+        <button class="noBtn" id="noBtn2" onmouseover="moveNo('noBtn2')">NO 😏</button>
+    </div>
+</section>
+
+<!-- SECTION 3a (Envelope Reveal) -->
 <section id="envelopeSection" class="hidden">
     <h1>Click the Envelope 💌</h1>
     <div class="envelope" onclick="openLetter()">💌</div>
@@ -124,28 +171,50 @@ allow="autoplay">
     </div>
 </section>
 
+<!-- FINAL MESSAGE -->
+<section id="finalSection" class="hidden">
+    <h1>She Said YES ❤️</h1>
+    <p>
+        You are my forever.
+        My always.
+        My home.
+    </p>
+</section>
+
 <script>
-let yesSize = 1;
-
-function noClicked() {
-    // Increase YES button size
-    yesSize += 0.2;
-    document.getElementById("yesBtn").style.transform = "scale(" + yesSize + ")";
-
-    // Move NO button randomly
-    let noBtn = document.getElementById("noBtn");
-    noBtn.style.position = "absolute";
-    noBtn.style.top = Math.random() * 60 + "vh";
-    noBtn.style.left = Math.random() * 60 + "vw";
+function moveNo(id) {
+    let button = document.getElementById(id);
+    button.style.top = Math.random() * 100 + "px";
+    button.style.left = Math.random() * 200 + "px";
 }
 
-function sayYes() {
-    document.querySelector("section").classList.add("hidden");
+function goToProposal() {
+    document.getElementById("proposalSection").scrollIntoView();
+}
+
+function finalYes() {
     document.getElementById("envelopeSection").classList.remove("hidden");
+    document.getElementById("envelopeSection").scrollIntoView();
+    createHearts();
 }
 
 function openLetter() {
     document.getElementById("letterContent").classList.remove("hidden");
+}
+
+function createHearts() {
+    for (let i = 0; i < 60; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
 }
 </script>
 
