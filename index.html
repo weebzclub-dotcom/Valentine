@@ -5,27 +5,31 @@
     <style>
         body {
             margin: 0;
-            font-family: 'Georgia', serif;
+            font-family: Georgia, serif;
             background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
             color: white;
             text-align: center;
             overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
         }
 
         h1 {
-            margin-top: 20vh;
             font-size: 3em;
-            animation: fadeIn 3s forwards;
         }
 
         p {
-            width: 70%;
-            margin: 20px auto;
+            max-width: 700px;
             font-size: 1.3em;
             line-height: 1.6;
-            opacity: 0;
-            animation: fadeIn 4s forwards;
-            animation-delay: 3s;
         }
 
         button {
@@ -38,17 +42,17 @@
             transition: 0.3s;
         }
 
-        #yesBtn {
+        .yesBtn {
             background-color: #ff4e88;
             color: white;
         }
 
-        #yesBtn:hover {
+        .yesBtn:hover {
             transform: scale(1.1);
             background-color: #ff1e6c;
         }
 
-        #noBtn {
+        .noBtn {
             background-color: #444;
             color: white;
             position: absolute;
@@ -58,27 +62,15 @@
             display: none;
         }
 
-        #proposal {
-            margin-top: 20vh;
-            font-size: 2em;
-            animation: fadeIn 3s forwards;
-        }
-
         .heart {
             position: fixed;
-            font-size: 20px;
-            color: #ff4e88;
+            font-size: 24px;
             animation: float 5s linear infinite;
         }
 
         @keyframes float {
             0% { transform: translateY(100vh); opacity: 1; }
             100% { transform: translateY(-10vh); opacity: 0; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         iframe {
@@ -91,56 +83,78 @@
 <!-- Background Music -->
 <iframe width="0" height="0"
 src="https://www.youtube.com/embed/oozQ4yV__Vw?autoplay=1&loop=1&playlist=oozQ4yV__Vw"
-frameborder="0"
 allow="autoplay">
 </iframe>
 
-<h1>My Lovely Kelly ❤️</h1>
+<!-- SECTION 1 -->
+<section>
+    <h1>My Lovely Kelly ❤️</h1>
+    <p>
+        From the moment you came into my life,
+        everything changed.
+        You became my peace, my happiness,
+        my once-in-a-lifetime kind of love.
+    </p>
+</section>
 
-<p>
-From the moment you walked into my life,
-everything changed.
-You became my peace, my happiness,
-my once-in-a-lifetime kind of love.
-</p>
-
-<div id="questionSection">
+<!-- SECTION 2 -->
+<section id="valentineSection">
     <h2>Will you be my Valentine? 💘</h2>
-    <button id="yesBtn" onclick="sayYes()">YES 😍</button>
-    <button id="noBtn" onmouseover="moveNo()">NO 😅</button>
-</div>
+    <div style="position:relative; height:150px;">
+        <button class="yesBtn" onclick="goToProposal()">YES 😍</button>
+        <button class="noBtn" id="noBtn1" onmouseover="moveNo('noBtn1')">NO 😅</button>
+    </div>
+</section>
 
-<div id="proposalSection" class="hidden">
-    <div id="proposal">
-        I have one more question... 💍
-        <br><br>
+<!-- SECTION 3 -->
+<section id="proposalSection">
+    <h2>One More Question... 💍</h2>
+    <p>
         Not just today.
-        <br>
-        Not just this year.
+        <br>Not just this year.
         <br><br>
         But for every sunrise,
         every dream,
         every lifetime...
-        <br><br>
-        Will you be mine forever? ❤️
+    </p>
+
+    <h2>Will you be mine forever? ❤️</h2>
+
+    <div style="position:relative; height:150px;">
+        <button class="yesBtn" onclick="finalYes()">YES 💍</button>
+        <button class="noBtn" id="noBtn2" onmouseover="moveNo('noBtn2')">NO 😏</button>
     </div>
-</div>
+</section>
+
+<!-- FINAL MESSAGE -->
+<section id="finalSection" class="hidden">
+    <h1>She Said YES ❤️</h1>
+    <p>
+        You are my forever.
+        My always.
+        My home.
+    </p>
+</section>
 
 <script>
-function moveNo() {
-    let button = document.getElementById("noBtn");
-    button.style.top = Math.random() * 80 + "vh";
-    button.style.left = Math.random() * 80 + "vw";
+function moveNo(id) {
+    let button = document.getElementById(id);
+    button.style.top = Math.random() * 100 + "px";
+    button.style.left = Math.random() * 200 + "px";
 }
 
-function sayYes() {
-    document.getElementById("questionSection").classList.add("hidden");
-    document.getElementById("proposalSection").classList.remove("hidden");
+function goToProposal() {
+    document.getElementById("proposalSection").scrollIntoView();
+}
+
+function finalYes() {
+    document.getElementById("finalSection").classList.remove("hidden");
+    document.getElementById("finalSection").scrollIntoView();
     createHearts();
 }
 
 function createHearts() {
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 60; i++) {
         let heart = document.createElement("div");
         heart.className = "heart";
         heart.innerHTML = "❤️";
