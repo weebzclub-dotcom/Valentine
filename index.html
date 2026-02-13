@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For My Forever Lovely Kelly ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-top: 20vh;
+            font-size: 3em;
+            animation: fadeIn 3s forwards;
+        }
+
+        p {
+            width: 70%;
+            margin: 20px auto;
+            font-size: 1.3em;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeIn 4s forwards;
+            animation-delay: 3s;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 20px;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background-color: #ff4e88;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            background-color: #ff1e6c;
+        }
+
+        #noBtn {
+            background-color: #444;
+            color: white;
+            position: absolute;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #proposal {
+            margin-top: 20vh;
+            font-size: 2em;
+            animation: fadeIn 3s forwards;
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            color: #ff4e88;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        iframe {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Background Music -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/oozQ4yV__Vw?autoplay=1&loop=1&playlist=oozQ4yV__Vw"
+frameborder="0"
+allow="autoplay">
+</iframe>
+
+<h1>My Love ❤️</h1>
+
+<p>
+From the moment you walked into my life,
+everything changed.
+You became my peace, my happiness,
+my once-in-a-lifetime kind of love.
+</p>
+
+<div id="questionSection">
+    <h2>Will you be my Valentine? 💘</h2>
+    <button id="yesBtn" onclick="sayYes()">YES 😍</button>
+    <button id="noBtn" onmouseover="moveNo()">NO 😅</button>
+</div>
+
+<div id="proposalSection" class="hidden">
+    <div id="proposal">
+        I have one more question... 💍
+        <br><br>
+        Not just today.
+        <br>
+        Not just this year.
+        <br><br>
+        But for every sunrise,
+        every dream,
+        every lifetime...
+        <br><br>
+        Will you be mine forever? ❤️
+    </div>
+</div>
+
+<script>
+function moveNo() {
+    let button = document.getElementById("noBtn");
+    button.style.top = Math.random() * 80 + "vh";
+    button.style.left = Math.random() * 80 + "vw";
+}
+
+function sayYes() {
+    document.getElementById("questionSection").classList.add("hidden");
+    document.getElementById("proposalSection").classList.remove("hidden");
+    createHearts();
+}
+
+function createHearts() {
+    for (let i = 0; i < 50; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
+}
+</script>
+
+</body>
+</html>
