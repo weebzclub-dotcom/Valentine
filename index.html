@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>For My Forever ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             margin: 0;
@@ -183,6 +184,11 @@ allow="autoplay">
 
 <script>
 function moveNo(id) {
+
+    // Increase YES button size
+    yesSize += 0.2;
+    document.getElementById("yesBtn").style.transform = "scale(" + yesSize + ")";
+    
     let button = document.getElementById(id);
     button.style.top = Math.random() * 100 + "px";
     button.style.left = Math.random() * 200 + "px";
@@ -200,6 +206,7 @@ function finalYes() {
 
 function openLetter() {
     document.getElementById("letterContent").classList.remove("hidden");
+    document.getElementById("finalSection").scrollIntoView();
 }
 
 function createHearts() {
