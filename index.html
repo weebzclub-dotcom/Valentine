@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>For My Forever ❤️</title>
+    <title>For Bubu ❤️</title>
     <style>
         body {
             margin: 0;
@@ -62,6 +62,11 @@
             display: none;
         }
 
+        iframe {
+            display: none;
+        }
+
+        /* Floating Hearts */
         .heart {
             position: fixed;
             font-size: 24px;
@@ -73,8 +78,28 @@
             100% { transform: translateY(-10vh); opacity: 0; }
         }
 
-        iframe {
-            display: none;
+        /* Ring Animation */
+        .ring {
+            font-size: 80px;
+            animation: ringPop 1s ease-out forwards;
+        }
+
+        @keyframes ringPop {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        /* Cursor for typewriter */
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            background: white;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
         }
     </style>
 </head>
@@ -88,18 +113,12 @@ allow="autoplay">
 
 <!-- SECTION 1 -->
 <section>
-    <h1>My Lovely Kelly ❤️</h1>
-    <p>
-        From the moment you came into my life,
-        everything changed.
-        You became my peace, my happiness,
-        my once-in-a-lifetime kind of love.
-    </p>
+    <h1 id="typewriter"></h1>
 </section>
 
 <!-- SECTION 2 -->
-<section id="valentineSection">
-    <h2>Will you be my Valentine? 💘</h2>
+<section>
+    <h2>Will you be my Valentine, Bubu? 💘</h2>
     <div style="position:relative; height:150px;">
         <button class="yesBtn" onclick="goToProposal()">YES 😍</button>
         <button class="noBtn" id="noBtn1" onmouseover="moveNo('noBtn1')">NO 😅</button>
@@ -110,7 +129,7 @@ allow="autoplay">
 <section id="proposalSection">
     <h2>One More Question... 💍</h2>
     <p>
-        Not just today.
+        Bubu, not just today.
         <br>Not just this year.
         <br><br>
         But for every sunrise,
@@ -126,9 +145,10 @@ allow="autoplay">
     </div>
 </section>
 
-<!-- FINAL MESSAGE -->
+<!-- FINAL SECTION -->
 <section id="finalSection" class="hidden">
-    <h1>She Said YES ❤️</h1>
+    <div class="ring">💍</div>
+    <h1>Bubu Said YES ❤️</h1>
     <p>
         You are my forever.
         My always.
@@ -137,22 +157,39 @@ allow="autoplay">
 </section>
 
 <script>
+/* Typewriter Effect */
+const text = "Bubu ❤️\nFrom the moment you came into my life,\neverything changed.";
+let i = 0;
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typewriter").innerHTML += 
+            text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 60);
+    }
+}
+typeWriter();
+
+/* Move NO Button */
 function moveNo(id) {
     let button = document.getElementById(id);
     button.style.top = Math.random() * 100 + "px";
     button.style.left = Math.random() * 200 + "px";
 }
 
+/* Scroll to Proposal */
 function goToProposal() {
     document.getElementById("proposalSection").scrollIntoView();
 }
 
+/* Final YES */
 function finalYes() {
     document.getElementById("finalSection").classList.remove("hidden");
     document.getElementById("finalSection").scrollIntoView();
     createHearts();
 }
 
+/* Hearts Animation */
 function createHearts() {
     for (let i = 0; i < 60; i++) {
         let heart = document.createElement("div");
